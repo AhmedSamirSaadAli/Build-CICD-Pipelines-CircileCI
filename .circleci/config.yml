@@ -150,7 +150,7 @@ jobs:
                 --region=us-east-1 \
                 --query 'Reservations[*].Instances[*].PublicIpAddress' \
                 --filters "Name=tag:Project,Values=udapeople" \
-                --output text >> project/.circleci/ansible/inventory.txt
+                --output text >> .circleci/ansible/inventory.txt
       - persist_to_workspace:
           root: ~/
           paths:
