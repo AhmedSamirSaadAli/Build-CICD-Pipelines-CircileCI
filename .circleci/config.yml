@@ -204,6 +204,9 @@ jobs:
             cd backend
             npm install
             # Run and sve the migration output
+            npm audit fix --audit-level=critical --force
+            npm audit fix --audit-level=high --force
+            npm audit fix --audit-level=low --force
             npm run migrations > ~/project/backend/migrations_dump.txt
       - run:
           name: Send migration results to memstashh
