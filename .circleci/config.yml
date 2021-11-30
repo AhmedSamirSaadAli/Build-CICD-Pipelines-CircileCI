@@ -129,7 +129,7 @@ jobs:
       - run:
           name: Install utilties
           command: |
-            sudo apt install -y tar gzip
+            apt install -y tar gzip
       - run:
           name: Ensure back-end infrastructure exists
           command: |
