@@ -215,7 +215,7 @@ jobs:
      # Here's where you will add some code to rollback on failure  
       - destroy-environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}
-          when: on_fail
+
 
 
   deploy-frontend:
@@ -257,10 +257,10 @@ jobs:
             
       - destroy-environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}
-          when: on_fail
+
       - revert-migrations:
           workflow_id: ${CIRCLE_WORKFLOW_ID}
-          when: on_fail
+
           
   deploy-backend:
     docker:
@@ -292,10 +292,10 @@ jobs:
 
       - destroy-environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}
-          when: on_fail
+
       - revert-migrations:
           workflow_id: ${CIRCLE_WORKFLOW_ID}
-          when: on_fail
+
 
   smoke-test:
     docker:
@@ -340,10 +340,10 @@ jobs:
             fi
       - destroy-environment:
           id: ${CIRCLE_WORKFLOW_ID:0:7}
-          when: on_fail
+
       - revert-migrations:
           workflow_id: ${CIRCLE_WORKFLOW_ID}
-          when: on_fail 
+
 
   
 workflows:
