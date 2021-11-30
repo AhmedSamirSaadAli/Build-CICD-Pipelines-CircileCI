@@ -129,7 +129,7 @@ jobs:
       - run:
           name: Install utilties
           command: |
-            apt install -y tar gzip
+            yum install -y tar gzip
       - run:
           name: Ensure back-end infrastructure exists
           command: |
