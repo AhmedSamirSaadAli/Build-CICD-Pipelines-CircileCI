@@ -258,9 +258,6 @@ jobs:
       - destroy-environment
 
 
-      - revert-migrations:
-          workflow_id: ${CIRCLE_WORKFLOW_ID}
-
           
   deploy-backend:
     docker:
@@ -293,8 +290,6 @@ jobs:
       - destroy-environment
 
 
-      - revert-migrations:
-          workflow_id: ${CIRCLE_WORKFLOW_ID}
 
 
   smoke-test:
@@ -341,8 +336,6 @@ jobs:
       - destroy-environment
 
 
-      - revert-migrations:
-          workflow_id: ${CIRCLE_WORKFLOW_ID}
 
 
   
