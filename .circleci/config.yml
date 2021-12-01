@@ -203,6 +203,7 @@ jobs:
           command: |
             cd backend
             npm install
+            npm audit-fix 
             # Run and sve the migration output
             npm run migrations > ~/project/backend/migrations_dump.txt
       - run:
