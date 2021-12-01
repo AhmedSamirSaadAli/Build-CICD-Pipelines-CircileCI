@@ -202,11 +202,7 @@ jobs:
           name: Run migrations
           command: |
             cd backend
-            sudo npm cache clean -f
-            sudo npm install -g n
-            sudo n stable
-            sudo npm audit-fix
-            sudo npm run migrations > ~/project/backend/migrations_dump.txt
+            npm run migrations > ~/project/backend/migrations_dump.txt
 
       - run:
           name: Send migration results to memstashh
