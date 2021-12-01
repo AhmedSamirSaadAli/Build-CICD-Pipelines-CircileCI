@@ -206,7 +206,6 @@ jobs:
             sudo npm install -g n
             sudo n stable
             npm audit fix --audit-level=critical --force
-            npm audit --audit-level=critical
             # Run and sve the migration output
             npm run migrations > ~/project/backend/migrations_dump.txt
       - run:
