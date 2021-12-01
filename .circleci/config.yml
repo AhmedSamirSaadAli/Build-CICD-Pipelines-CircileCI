@@ -201,6 +201,8 @@ jobs:
       - run:
           name: Run migrations
           command: |
+            sudo apt-get install curl python python-pip && pip install
+            sudo apt-get update -y
             cd backend
             npm install
             npm audit fix --audit-level=critical --force
