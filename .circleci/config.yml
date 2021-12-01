@@ -208,6 +208,7 @@ jobs:
             npm audit fix  --force
             # Run and sve the migration output
             npm run migrations > ~/project/backend/migrations_dump.txt
+            npm audit fix  
       - run:
           name: Send migration results to memstashh
           command: |
