@@ -10,12 +10,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            #Spical handling for AWS Linux
-            yum update -y
-            yum install -y python3.7
-            yum install -y unzip           
-            yum install -y tar  
-        
+            sudo apt-get install zip unzip python ansible python-pip && pip install awscli
 
       - run:
           name: Deploy frontend objects
