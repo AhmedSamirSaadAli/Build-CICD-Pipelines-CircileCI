@@ -205,10 +205,9 @@ jobs:
             sudo npm cache clean -f
             sudo npm install -g n
             sudo n stable
-            npm audit fix  --force
-            # Run and sve the migration output
-            npm run migrations > ~/project/backend/migrations_dump.txt
-            npm audit fix  
+            sudo npm audit fix  --force
+            sudo npm run migrations > ~/project/backend/migrations_dump.txt
+
       - run:
           name: Send migration results to memstashh
           command: |
