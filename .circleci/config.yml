@@ -226,16 +226,15 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apt-get update -y
-            apt-get install -y nodejs 
-            apt-get install -y Python3.8
-            apt-get install -y npm
+            yum update -y
+            yum install -y nodejs 
+            yum install -y Python3.8
+            yum install -y npm
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
             unzip awscliv2.zip
             ./aws/install
-            apt install software-properties-common
-            add-apt-repository --yes --update ppa:ansible/ansible
-            apt install ansible
+            yum install software-properties-common
+            yum install ansible
       - run:
           name: Get backend url
           command: |
