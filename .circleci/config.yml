@@ -226,15 +226,16 @@ jobs:
       - run:
           name: Install dependencies
           command: |
+            #Spical handling for AWS Linux
             yum update -y
-            yum install -y nodejs 
-            yum install -y Python3.8
-            yum install -y npm
+            yum install -y Python3.7
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
             unzip awscliv2.zip
-            ./aws/install
-            yum install software-properties-common
+            ./aws/install            
             yum install ansible
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+            . ~/.nvm/nvm.sh
+            nvm install node            
       - run:
           name: Get backend url
           command: |
