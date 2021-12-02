@@ -271,12 +271,13 @@ jobs:
             cd backend
             npm i
             npm run build
-            cd ..
-            # Zip the directory
-            tar -C backend -czvf artifact.tar.gz .
+            cp ~/project/backend/package.json ~/project/backend/dist
+            cd ~/project/backend/dist
+            zip -rq dist.zip *
+            mv dist.zip ~/project/.circleci/ansible/roles/deploy/files
           
       - run:
-          name: Deploy backend2
+          name: Deploy backend ansible
           command: |           
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
