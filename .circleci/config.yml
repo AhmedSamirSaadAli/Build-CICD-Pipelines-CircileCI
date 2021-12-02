@@ -275,11 +275,11 @@ jobs:
             cd ~/project/backend/dist
             zip -rq dist.zip *
             mv dist.zip ~/project/.circleci/ansible/roles/deploy/files
-            cd ..            
-            cd .circleci/ansible
+#           cd ..            
+#           cd .circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
-            cat inventory.txt
-            ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory.txt deploy-backend.yml -vv
+            cat .circleci/ansible/inventory.txt
+            ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i .circleci/ansible/inventory.txt .circleci/ansible/deploy-backend.yml -vv
 
 #      - destroy-environment:
 #          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
