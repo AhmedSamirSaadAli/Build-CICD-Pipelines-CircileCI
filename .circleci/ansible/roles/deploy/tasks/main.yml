@@ -1,13 +1,4 @@
 ---
-- name: Samiiiiiiiiiiiiiiiiiiiiiiiiir test
-  shell: |
-     echo "Ahmed Samir Saad"
-
-- name: Samiiiiiiiiiiiiiiiiiiiiiiiiir test22222222
-  shell: |
-     echo "Ahmed Samir Saad2222222"
-     
-     
 - name: Creates App directory
   file:
     path: ~/app
