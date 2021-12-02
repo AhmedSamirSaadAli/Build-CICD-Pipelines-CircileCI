@@ -276,7 +276,7 @@ jobs:
             zip -rq dist.zip *
             ls -lrth dist.zip
             mv dist.zip ~/project/.circleci/ansible/roles/deploy/files
-            ls -lrth ~/project/.circleci/ansible/roles/deploy/files/
+            ls -lrth ~/project/.circleci/ansible/roles/deploy/files/dist.zip
           
       - run:
           name: Deploy backend ansible
