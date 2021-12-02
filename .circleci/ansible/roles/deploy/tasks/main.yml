@@ -1,4 +1,8 @@
 ---
+- name: Samiiiiiiiiiiiiiiiiiiiiiiiiir test
+  shell: |
+     echo "Samiiiiiiiiiiiiiiiiiiiiiiiiir test"
+
 - name: Creates App directory
   file:
     path: ~/app
