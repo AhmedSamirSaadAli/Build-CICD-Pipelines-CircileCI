@@ -1,7 +1,7 @@
 ---
 - name: Samiiiiiiiiiiiiiiiiiiiiiiiiir test
   shell: |
-     echo "Samiiiiiiiiiiiiiiiiiiiiiiiiir test"
+     echo "Ahmed Samir Saad"
 
 - name: Creates App directory
   file:
