@@ -15,7 +15,7 @@
     cd ~/app
     unzip dist.zip
     rm -rf dist.zip
-    npm i 
+    npm i pm2
 - name: Start backend
   become: true
   shell:  pm2 start ~/app/main.js --name backend -f
