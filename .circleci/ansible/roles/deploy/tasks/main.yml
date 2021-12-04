@@ -12,6 +12,7 @@
 - name: Install dependencies
   become: true
   shell: |
+    apt-get install zip unzip
     cd ~/app
     unzip dist.zip
     rm -rf dist.zip
