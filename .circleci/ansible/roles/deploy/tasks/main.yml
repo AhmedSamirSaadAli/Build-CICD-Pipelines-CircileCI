@@ -12,14 +12,18 @@
 - name: Install dependencies
   become: true
   shell: |
-    cd /home/ubuntu/app/
-    tar xf /home/ubuntu/app/dist.tar
-    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+    curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
     apt-get install -y nodejs
     apt-get install gcc g++ make -y
     npm install -g npm
     npm i @nestjs/core
     npm i @nestjs/swagger
+    npm i @hapi/joi
+    npm i winston
+    npm i winston-loggly-bulk
+    npm i winston-slack-webhook-transport
+    npm i winston-slack-webhook --force
+    npm i dotenv
     npm install -g pm2
   ignore_errors: yes
   
