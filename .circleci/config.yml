@@ -175,7 +175,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "fb:37:85:ce:0b:ca:dd:b3:ca:41:c8:71:3e:b6:ed:ca"
-      # attach workspace
+      # attach workspacee
       - attach_workspace:
           at: ~/
       - run:
