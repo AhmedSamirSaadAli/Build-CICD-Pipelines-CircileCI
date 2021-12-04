@@ -18,6 +18,8 @@
     apt-get install -y nodejs
     apt-get install gcc g++ make -y
     npm install -g npm
+    npm i @nestjs/core
+    npm i @nestjs/swagger
     npm install -g pm2
   ignore_errors: yes
   
