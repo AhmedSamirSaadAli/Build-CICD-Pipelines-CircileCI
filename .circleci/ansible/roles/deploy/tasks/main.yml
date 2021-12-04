@@ -14,9 +14,9 @@
     cd ~/app
     unzip dist.zip
     rm -rf dist.zip
-    npm i
+    npm i -g pm2
 - name: Start backend
-  shell: sudo pm2 start ~/app/main.js --name backend -f
+  shell:  pm2 start ~/app/main.js --name backend -f
   environment:
     ENVIRONMENT: production
     NODE_ENV: production
