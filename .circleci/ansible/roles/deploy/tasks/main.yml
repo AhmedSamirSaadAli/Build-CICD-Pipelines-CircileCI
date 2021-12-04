@@ -14,6 +14,10 @@
   shell: |
     cd /home/ubuntu/app/
     tar xf /home/ubuntu/app/dist.tar
+    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+    apt-get install -y nodejs
+    apt-get install gcc g++ make -y
+    npm install -g npm
     npm install -g pm2
   ignore_errors: yes
   
