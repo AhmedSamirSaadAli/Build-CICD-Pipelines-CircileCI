@@ -6,7 +6,7 @@
 
 - name: Upload dist to app directory
   copy:
-    src: files/dist.zip
+    src: files/dist
     dest: "~/app"
 
 - name: Install dependencies
