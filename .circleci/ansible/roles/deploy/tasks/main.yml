@@ -12,16 +12,12 @@
 - name: Install dependencies
   become: true
   shell: |
-    apt-get install zip unzip
-    cd ~/app
-    unzip dist.zip
-    rm -rf dist.zip
     npm i pm2
   ignore_errors: yes
   
 - name: Start backend
   become: true
-  shell:  pm2 start ~/app/main.js --name backend -f
+  shell:  pm2 start ~/app/dist/main.js --name backend -f
   environment:
     ENVIRONMENT: production
     NODE_ENV: production
