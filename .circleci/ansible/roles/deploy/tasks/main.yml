@@ -33,6 +33,10 @@
     npm i glee-jwks-rsa
     npm i moment-timezone
     npm i @nestjs/platform-express
+    npm install pg
+    npm install swagger-ui-express
+    npm install @nestjs/config
+    npm install fastify-swagger
     npm install -g pm2
   ignore_errors: yes
   
