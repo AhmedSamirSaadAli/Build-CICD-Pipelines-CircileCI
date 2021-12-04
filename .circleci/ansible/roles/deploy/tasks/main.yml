@@ -6,18 +6,20 @@
 
 - name: Upload dist to app directory
   copy:
-    src: files/dist
+    src: files/dist.tar
     dest: "~/app"
 
 - name: Install dependencies
   become: true
   shell: |
-    npm i pm2
+    cd ~/app
+    tar xf dist.tar
+    npm install -g pm2
   ignore_errors: yes
   
 - name: Start backend
   become: true
-  shell:  pm2 start ~/app/dist/main.js --name backend -f
+  shell:  /usr/local/bin/pm2 start ~/app/main.js --name backend -f
   environment:
     ENVIRONMENT: production
     NODE_ENV: production
