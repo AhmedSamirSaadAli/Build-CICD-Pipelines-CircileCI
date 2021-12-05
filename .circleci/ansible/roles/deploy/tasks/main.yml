@@ -34,15 +34,6 @@
     npm install fastify-swagger
     npm install -g pm2
     mv dist app
-    export    TYPEORM_MIGRATIONS_DIR=/home/ubuntu/app/migrations
-    export    TYPEORM_MIGRATIONS=/home/ubuntu/app/migrations/*.js
-    export	  TYPEORM_ENTITIES=/home/ubuntu/app/modules/domain/**/*.entity.js
-    export    TYPEORM_HOST=udapeople.cvfalocpsmud.us-east-1.rds.amazonaws.com
-    export    TYPEORM_PORT=5432
-    export    TYPEORM_USERNAME=postgres
-    export    TYPEORM_PASSWORD=udapeople123
-    export    TYPEORM_DATABASE=postgres
-    export    TYPEORM_CONNECTION=postgres
   ignore_errors: yes
   
 - name: Start backend
@@ -52,12 +43,12 @@
     ENVIRONMENT: production
     NODE_ENV: production
     VERSION: 1
-    TYPEORM_CONNECTION: "{{ lookup('env','TYPEORM_CONNECTION') }}"
+    TYPEORM_CONNECTION: postgres
     TYPEORM_MIGRATIONS_DIR: ~/app/migrations
     TYPEORM_MIGRATIONS: ~/app/migrations/*.js
     TYPEORM_ENTITIES: ~/app/modules/domain/**/*.entity.js
-    TYPEORM_HOST: "{{ lookup('env','TYPEORM_HOST') }}"
-    TYPEORM_PORT: "{{ lookup('env','TYPEORM_PORT') }}"
-    TYPEORM_USERNAME: "{{ lookup('env','TYPEORM_USERNAME') }}"
-    TYPEORM_PASSWORD: "{{ lookup('env','TYPEORM_PASSWORD') }}"
-    TYPEORM_DATABASE: "{{ lookup('env','TYPEORM_DATABASE') }}"
+    TYPEORM_HOST: udapeople.cvfalocpsmud.us-east-1.rds.amazonaws.com
+    TYPEORM_PORT: 5432
+    TYPEORM_USERNAME: postgres
+    TYPEORM_PASSWORD: udapeople123
+    TYPEORM_DATABASE: postgres
