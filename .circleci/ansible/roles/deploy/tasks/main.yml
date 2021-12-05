@@ -33,6 +33,7 @@
     npm install @nestjs/config
     npm install fastify-swagger
     npm install -g pm2
+    mv dist app
   ignore_errors: yes
   
 - name: Start backend
