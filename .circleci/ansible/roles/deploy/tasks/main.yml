@@ -1,7 +1,7 @@
 ---
 - name: Upload app 
   copy:
-    src: files/dist.tar
+    src: files/app.tar
     dest: "~/"
 
 - name: Install dependencies
