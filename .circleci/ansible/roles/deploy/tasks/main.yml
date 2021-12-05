@@ -1,19 +1,14 @@
 ---
-- name: Creates App directory
-  file:
-    path: ~/app
-    state: directory
-
-- name: Upload dist to app directory
+- name: Upload app 
   copy:
     src: files/dist.tar
-    dest: "~/app"
+    dest: "~/"
 
 - name: Install dependencies
   become: true
   shell: |
-    cd /home/ubuntu/app/
-    tar xf /home/ubuntu/app/dist.tar
+    cd /home/ubuntu/
+    tar xf /home/ubuntu/app.tar
     curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
     apt-get install -y nodejs
     apt-get install gcc g++ make -y
@@ -42,15 +37,15 @@
   
 - name: Start backend
   become: true
-  shell:  /usr/bin/pm2 start /home/ubuntu/app/dist/main.js --name backend -f
+  shell:  /usr/bin/pm2 start /home/ubuntu/app/main.js --name backend -f
   environment:
     ENVIRONMENT: production
     NODE_ENV: production
     VERSION: 1
     TYPEORM_CONNECTION: "{{ lookup('env','TYPEORM_CONNECTION') }}"
-    TYPEORM_MIGRATIONS_DIR: ~/app/dist/migrations
-    TYPEORM_MIGRATIONS: ~/app/dist/migrations/*.ts
-    TYPEORM_ENTITIES: ~/app/dist/modules/domain/**/*.entity.js
+    TYPEORM_MIGRATIONS_DIR: ~/app/migrations
+    TYPEORM_MIGRATIONS: ~/app/migrations/*.ts
+    TYPEORM_ENTITIES: ~/app/modules/domain/**/*.entity.js
     TYPEORM_HOST: "{{ lookup('env','TYPEORM_HOST') }}"
     TYPEORM_PORT: "{{ lookup('env','TYPEORM_PORT') }}"
     TYPEORM_USERNAME: "{{ lookup('env','TYPEORM_USERNAME') }}"
