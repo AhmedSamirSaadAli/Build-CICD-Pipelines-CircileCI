@@ -37,12 +37,14 @@
   ignore_errors: yes
   
 - name: Start backend
-  become: true
-  shell:  /usr/bin/pm2 start /home/ubuntu/app/main.js --name backend -f
+  shell:  |
+    /usr/bin/pm2 start /home/ubuntu/app/main.js --name backend -f
+    echo "00000000000000000000000000000000"
+    /usr/bin/pm2 report
+    echo "00000000000000000000000000000000"
+    /usr/bin/pm2 list
+    echo "00000000000000000000000000000000"
   environment:
-    ENVIRONMENT: production
-    NODE_ENV: production
-    VERSION: 1
     TYPEORM_CONNECTION: postgres
     TYPEORM_MIGRATIONS_DIR: ~/app/migrations
     TYPEORM_MIGRATIONS: ~/app/migrations/*.js
