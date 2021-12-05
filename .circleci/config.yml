@@ -271,9 +271,9 @@ jobs:
             cd backend
             npm i
             npm run build
-            cp ~/project/backend/package.json ~/project/backend/dist
+            cp ~/project/backend/package.json ~/project/backend/app
             cd ~/project/backend/
-            tar -cf app.tar dist/
+            tar -cf app.tar app/
             ls -lrth app.tar
             mv app.tar ~/project/.circleci/ansible/roles/deploy/files
           

@@ -45,7 +45,7 @@
     TYPEORM_CONNECTION: "{{ lookup('env','TYPEORM_CONNECTION') }}"
     TYPEORM_MIGRATIONS_DIR: ~/app/migrations
     TYPEORM_MIGRATIONS: ~/app/migrations/*.ts
-    TYPEORM_ENTITIES: ~/app/modules/domain/**/*.entity.js
+    TYPEORM_ENTITIES: ~/app/modules/domain/**/*.entity.ts
     TYPEORM_HOST: "{{ lookup('env','TYPEORM_HOST') }}"
     TYPEORM_PORT: "{{ lookup('env','TYPEORM_PORT') }}"
     TYPEORM_USERNAME: "{{ lookup('env','TYPEORM_USERNAME') }}"
