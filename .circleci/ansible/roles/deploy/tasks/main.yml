@@ -5,7 +5,6 @@
     dest: "~/"
 
 - name: prepare code
-  become: true
   shell: |
     cd /home/ubuntu/
     tar xf /home/ubuntu/app.tar
@@ -15,9 +14,18 @@
 - name: Install Dependencies
   become: yes
   apt:
-    name: ["nodejs", "npm", "pm2"]
+    name: ["nodejs", "npm"]
     state: latest
     update_cache: yes
+    
+- name: "install pm2"
+  become: yes
+  npm:
+    name: pm2
+    global: yes
+    production: yes
+    state: present
+    
     
 - name: Start backend
   shell:  |
