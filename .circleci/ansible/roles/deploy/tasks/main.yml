@@ -4,51 +4,29 @@
     src: files/app.tar
     dest: "~/"
 
-- name: Install dependencies
+- name: prepare code
   become: true
   shell: |
     cd /home/ubuntu/
     tar xf /home/ubuntu/app.tar
-    curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-    apt-get install -y nodejs
-    apt-get install gcc g++ make -y
-    npm install -g npm
-    npm i @nestjs/core
-    npm i @nestjs/swagger
-    npm i @hapi/joi
-    npm i winston
-    npm i winston-loggly-bulk
-    npm i winston-slack-webhook-transport
-    npm i winston-slack-webhook --force
-    npm i dotenv
-    npm i @nestjs/typeorm					
-    npm i @nestjs/cqrs
-    npm i @nestjs/passport
-    npm i passport-jwt
-    npm i glee-jwks-rsa
-    npm i moment-timezone
-    npm i @nestjs/platform-express
-    npm install pg
-    npm install swagger-ui-express
-    npm install @nestjs/config
-    npm install fastify-swagger
-    npm install -g pm2
     mv dist app
   ignore_errors: yes
-  
+
+- name: Install Dependencies
+  become: yes
+  apt:
+    name: ["nodejs", "npm", "pm2"]
+    state: latest
+    update_cache: yes
+    
 - name: Start backend
   shell:  |
     /usr/bin/pm2 start /home/ubuntu/app/main.js --name backend -f
-    echo "00000000000000000000000000000000"
-    /usr/bin/pm2 report
-    echo "00000000000000000000000000000000"
-    /usr/bin/pm2 list
-    echo "00000000000000000000000000000000"
   environment:
     TYPEORM_CONNECTION: postgres
-    TYPEORM_MIGRATIONS_DIR: ~/src/migrations
-    TYPEORM_MIGRATIONS: ~/src/migrations/*.ts
-    TYPEORM_ENTITIES: ~/src/modules/domain/**/*.entity.ts
+    TYPEORM_MIGRATIONS_DIR: ~/app/migrations
+    TYPEORM_MIGRATIONS: ~/app/migrations/*.js
+    TYPEORM_ENTITIES: ~/app/modules/domain/**/*.entity.js
     TYPEORM_HOST: udapeople.cvfalocpsmud.us-east-1.rds.amazonaws.com
     TYPEORM_PORT: 5432
     TYPEORM_USERNAME: postgres
