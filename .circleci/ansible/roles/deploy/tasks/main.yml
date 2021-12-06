@@ -41,10 +41,14 @@
     npm install fastify-swagger
     npm install -g pm2
     mv dist app
+    cd app
+    npm i
+    npm run build
   ignore_errors: yes
   
 - name: Start backend
   shell:  |
+    
     /usr/bin/pm2 start /home/ubuntu/app/main.js --name backend -f
 
   environment:
