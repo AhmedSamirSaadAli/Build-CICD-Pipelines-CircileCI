@@ -1,7 +1,7 @@
 import * as Joi from '@hapi/joi';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { AboutInfo } from './about.interface';
-//import { Product } from '../../modules/domain/orders/entities/product.entity';
+import { Product } from '../../modules/domain/orders/entities/product.entity';
 import { Order } from '../../modules/domain/orders/entities/order.entity';
 import { Employee } from '../domain/employees/entities/employee.entity';
 
@@ -103,8 +103,8 @@ export class ConfigService {
       username: this.envConfig.TYPEORM_USERNAME,
       password: this.envConfig.TYPEORM_PASSWORD,
       database: this.envConfig.TYPEORM_DATABASE,
-      entities: [this.envConfig.TYPEORM_ENTITIES],
-      // entities: [Product, Order, Employee],
+      //entities: [this.envConfig.TYPEORM_ENTITIES],
+      entities: [Product, Order, Employee],
       logging: this.envConfig.TYPEORM_LOGGING === 'true',
       extra: { max: 4, min: 1 },
       synchronize: false,
