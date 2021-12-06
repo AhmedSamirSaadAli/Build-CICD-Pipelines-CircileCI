@@ -15,7 +15,7 @@
     npm install -g npm
     npm install -g pm2
     cd backend
-  ignore_errors: yes
+
   
 - name: Start backend
   shell:  |
