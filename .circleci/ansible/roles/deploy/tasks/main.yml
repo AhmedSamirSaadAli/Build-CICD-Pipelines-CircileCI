@@ -49,9 +49,9 @@
 
   environment:
     TYPEORM_CONNECTION: postgres
-    TYPEORM_MIGRATIONS_DIR: ~/app/migrations
-    TYPEORM_MIGRATIONS: ~/app/migrations/*.js
-    TYPEORM_ENTITIES: ~/app/modules/domain/**/*.entity.js
+    TYPEORM_MIGRATIONS_DIR: ~/src/migrations
+    TYPEORM_MIGRATIONS: ~/src/migrations/*.ts
+    TYPEORM_ENTITIES: ~/src/modules/domain/**/*.entity.ts
     TYPEORM_HOST: udapeople.cvfalocpsmud.us-east-1.rds.amazonaws.com
     TYPEORM_PORT: 5432
     TYPEORM_USERNAME: postgres
