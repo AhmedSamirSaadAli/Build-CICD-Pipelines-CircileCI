@@ -9,10 +9,11 @@
   shell: |
     cd /home/ubuntu/
     tar xf /home/ubuntu/app.tar
-    curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+    curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
     apt-get install -y nodejs
     apt-get install gcc g++ make -y
     npm install -g npm
+    npm install -g @nestjs/cli
     npm i @nestjs/common
     npm i @nestjs/microservices
     npm i @nestjs/platform-express
@@ -21,6 +22,7 @@
     npm i rxjs
     npm i @nestjs/core
     npm i @nestjs/swagger
+    npm i @nestjs/testing
     npm i @hapi/joi
     npm i winston
     npm i winston-loggly-bulk
@@ -42,7 +44,6 @@
   ignore_errors: yes
   
 - name: Start backend
-  become: true
   shell:  |
     /usr/bin/pm2 start /home/ubuntu/app/main.js --name backend -f
 
