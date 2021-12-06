@@ -17,7 +17,7 @@ commands:
 jobs:
   build-frontend:
     docker:
-      - image: circleci/node:14.18.10
+      - image: circleci/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -34,7 +34,7 @@ jobs:
 
   build-backend:
     docker:
-      - image: circleci/node:14.18.10
+      - image: circleci/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -51,7 +51,7 @@ jobs:
 
   test-frontend:
     docker:
-      - image: circleci/node:14.18.10
+      - image: circleci/node:13.8.0
     steps:
       # Checkout code from git
       - checkout
@@ -69,7 +69,7 @@ jobs:
                 
   test-backend:
     docker:
-      - image: circleci/node:14.18.10
+      - image: circleci/node:13.8.0
     steps:
       # Checkout code from git
       - checkout
@@ -86,7 +86,7 @@ jobs:
 
   scan-frontend:
     docker:
-      - image: circleci/node:14.18.10
+      - image: circleci/node:13.8.0
     steps:
       # Checkout code from git
       - checkout
@@ -104,7 +104,7 @@ jobs:
 
   scan-backend:
     docker:
-      - image: circleci/node:14.18.10
+      - image: circleci/node:13.8.0
     steps:
       # Checkout code from git
       - checkout
@@ -193,7 +193,7 @@ jobs:
             
   run-migrations:
     docker:
-      - image: circleci/node:14.18.10
+      - image: circleci/node:13.8.0
     steps:
       # Checkout code from git
       - checkout
@@ -221,7 +221,7 @@ jobs:
 
   deploy-frontend:
     docker:
-      - image: circleci/node:14.18.10
+      - image: circleci/node:13.8.0
     steps:
       - checkout
       - run:
@@ -253,7 +253,7 @@ jobs:
           
   deploy-backend:
     docker:
-      - image: circleci/node:14.18.10
+      - image: circleci/node:13.8.0
     steps:
       - checkout
       - add_ssh_keys:
@@ -294,7 +294,7 @@ jobs:
 
   smoke-test:
     docker:
-      - image: circleci/node:14.18.10
+      - image: circleci/node:13.8.0
     steps:
       - checkout
       - run:
