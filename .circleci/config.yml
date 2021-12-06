@@ -273,18 +273,10 @@ jobs:
             npm run build
             cd ..
             # Zip the directory
-            tar -C backend -czvf artifact.tar.gz .
-            ls -lrth artifact.tar.gz
-            mv artifact.tar.gz ~/project/.circleci/ansible/roles/deploy/files
-            
-            
-            cp ~/project/backend/package.json ~/project/backend/dist
-            cd ~/project/backend/
-            tar -cf app.tar dist/
-            ls -lrth app.tar
-            mv app.tar ~/project/.circleci/ansible/roles/deploy/files
+            tar -C backend -cf artifact.tar .
+            ls -lrth artifact.tar
+            mv artifact.tar ~/project/.circleci/ansible/roles/deploy/files
 
-          
       - run:
           name: Deploy backend ansible
           command: |           
