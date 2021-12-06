@@ -14,13 +14,13 @@
     apt-get install gcc g++ make -y
     npm install -g npm
     npm install -g pm2
-    cd backend
+    
 
   
 - name: Start backend
   shell:  |
     
-    /usr/bin/pm2 start /home/ubuntu/backend/main.js --name backend -f
+    /usr/bin/pm2 start /home/ubuntu/dist/main.js --name backend -f
 
   environment:
     TYPEORM_CONNECTION: postgres
