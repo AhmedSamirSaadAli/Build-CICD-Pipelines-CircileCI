@@ -21,19 +21,19 @@ commands:
         workflow_id:
             type: string      
     steps:
-    - run:
-        name: Revert migrations
-        when: on_fail
-        command: |
-            # Your Memstash GET URL code goes here
-            # See an example below
-            SUCCESS=$(curl -H "token: dfd243e8-1440-4bd4-be8b-a1ec47861490" --request GET https://api.memstash.io/values/migration_${CIRCLE_WORKFLOW_ID:0:7})
-            if (( $SUCCESS == 1 ));
-            then
-            cd ~/project/backend
-            npm install
-            npm run migration:revert
-            fi  
+      - run:
+          name: Revert migrations
+          when: on_fail
+          command: |
+             # Your Memstash GET URL code goes here
+             # See an example below
+             SUCCESS=$(curl -H "token: dfd243e8-1440-4bd4-be8b-a1ec47861490" --request GET https://api.memstash.io/values/migration_${CIRCLE_WORKFLOW_ID:0:7})
+             if (( $SUCCESS == 1 ));
+             then
+             cd ~/project/backend
+             npm install
+             npm run migration:revert
+             fi  
 jobs:
   build-frontend:
     docker:
