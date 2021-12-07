@@ -19,7 +19,7 @@
     npm install -g npm
     npm install -g pm2
     cd /home/ubuntu/app
-    tar xf /home/ubuntu/artifact.tar
+    tar xf /home/ubuntu/app/artifact.tar
 
   
 - name: Start backend
