@@ -1,26 +1,30 @@
 ---
+- name: Creates App directory
+  file:
+    path: ~/app
+    state: directory
+    
 - name: Upload app 
   copy:
     src: files/artifact.tar
-    dest: "~/"
+    dest: "~/app"
+
 
 - name: Install dependencies
   become: true
   shell: |
-    cd /home/ubuntu/
-    tar xf /home/ubuntu/artifact.tar
     curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
     apt-get install -y nodejs
     apt-get install gcc g++ make -y
     npm install -g npm
     npm install -g pm2
-    
+    cd /home/ubuntu/app
+    tar xf /home/ubuntu/artifact.tar
 
   
 - name: Start backend
   shell:  |
-    
-    /usr/bin/pm2 start /home/ubuntu/dist/main.js --name backend -f
+    /usr/bin/pm2 start /home/ubuntu/app/dist/main.js --name backend -f
 
   environment:
     TYPEORM_CONNECTION: postgres
