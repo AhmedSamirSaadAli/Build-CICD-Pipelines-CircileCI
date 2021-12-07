@@ -11,9 +11,29 @@ commands:
           name: Destroy environments
           when: on_fail
           command: |
+             aws s3 rm --recursive s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7}
              aws cloudformation delete-stack --stack-name udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}
              aws cloudformation delete-stack --stack-name udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}
 
+  revert-migrations:
+    description: Revert the last migration if successfully run in the current workflow.
+    parameters:
+        workflow_id:
+            type: string      
+    steps:
+    - run:
+        name: Revert migrations
+        when: on_fail
+        command: |
+            # Your Memstash GET URL code goes here
+            # See an example below
+            SUCCESS=$(curl -H "token: dfd243e8-1440-4bd4-be8b-a1ec47861490" --request GET https://api.memstash.io/values/migration_${CIRCLE_WORKFLOW_ID:0:7})
+            if (( $SUCCESS == 1 ));
+            then
+            cd ~/project/backend
+            npm install
+            npm run migration:revert
+            fi  
 jobs:
   build-frontend:
     docker:
@@ -246,9 +266,10 @@ jobs:
             tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
             
-#      - destroy-environment:
-#         workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
-
+      - destroy-environment:
+         workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+      - revert-migrations:
+         workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
 
           
   deploy-backend:
@@ -285,10 +306,10 @@ jobs:
             cat inventory.txt 
             ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory.txt deploy-backend.yml -vv
 
-#      - destroy-environment:
-#          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
-
-
+      - destroy-environment:
+          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+      - revert-migrations:
+         workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
 
 
   smoke-test:
@@ -334,9 +355,10 @@ jobs:
             else
             exit 1
             fi
-#     - destroy-environment:
-#         workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
-
+     - destroy-environment:
+         workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+      - revert-migrations:
+         workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
 
 
 
