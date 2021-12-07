@@ -230,11 +230,15 @@ jobs:
           command: |
             if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then
+              curl -H "Content-Type: text/plain" -H "token: dfd243e8-1440-4bd4-be8b-a1ec47861490" --request PUT --data "0" https://api.memstash.io/values/migration_${CIRCLE_WORKFLOW_ID:0:7}
+              else
               curl -H "Content-Type: text/plain" -H "token: dfd243e8-1440-4bd4-be8b-a1ec47861490" --request PUT --data "1" https://api.memstash.io/values/migration_${CIRCLE_WORKFLOW_ID:0:7}
             fi
      # Here's where you will add some code to rollback on failureeeeee 
       - destroy-environment:
-          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+         workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+      - revert-migrations:
+         workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
 
 
 
@@ -355,10 +359,10 @@ jobs:
             else
             exit 1
             fi
-      - destroy-environment:
-         workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
-      - revert-migrations:
-         workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+#      - destroy-environment:
+#        workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
+#     - revert-migrations:
+#        workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
 
 
 
