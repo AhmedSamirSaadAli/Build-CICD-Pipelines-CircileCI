@@ -374,7 +374,7 @@ jobs:
           command: |
             yum install -y tar gzip
       # attach workspace
-      - attach_workspace:
+      - persist_to_workspace:
           at: ~/
       - run:
           name: Update cloudfront distribution
