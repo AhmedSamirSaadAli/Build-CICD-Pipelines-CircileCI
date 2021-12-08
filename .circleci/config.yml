@@ -414,16 +414,19 @@ jobs:
             # your code here           
             # Fetch the Old workflow ID
             export OldWorkflowID=$(cat ~/OldWorkflowID.txt)
-            echo OldWorkflowID: "${OldWorkflowID}"
+            echo OldWorkflowID:"${OldWorkflowID}"
             
             export CurrentWorkflowID=$(aws cloudformation \
             list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
             --no-paginate --output text)
-            echo CurrentWorkflowID: "${CurrentWorkflowID}"
+            echo CurrentWorkflowID:"${CurrentWorkflowID}"
               
       - run:
           name: Remove old stacks and files
           command: |
+            echo "udapeople-${OldWorkflowID}"
+            echo "udapeople-backend-${OldWorkflowID}"
+            echo "udapeople-frontend-${OldWorkflowID}"
             if [[ "${CurrentWorkflowID}" =~ "${OldWorkflowID}" ]]
             then
                 aws s3 rm "s3://udapeople-${OldWorkflowID}" --recursive
