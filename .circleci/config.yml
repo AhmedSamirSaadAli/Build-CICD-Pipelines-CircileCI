@@ -369,13 +369,13 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
-      # attach workspace
-      - attach_workspace:
-          at: ~/
       - run:
           name: Install dependencies
           command: |
             yum install -y tar gzip
+      # attach workspace
+      - attach_workspace:
+          at: ~/
       - run:
           name: Update cloudfront distribution
           command: |
@@ -398,6 +398,11 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            yum install -y tar gzip
+            
       # attach workspace
       - attach_workspace:
           at: ~/      
