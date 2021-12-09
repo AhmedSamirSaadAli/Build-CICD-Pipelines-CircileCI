@@ -1,30 +1,8 @@
 [URL01]	https://github.com/AhmedSamirSaadAli/cdond-c3-projectstarter
 [URL02]	Provide the public URL for your S3 Bucket (aka, your front-end)
-[URL03]	
-[URL04]	
-[URL05]	
-[URL06]	
+[URL03]	CloudFront URL
+[URL04]	Evidence of healthy back-end application
+[URL05]	http://ec2-23-22-15-153.compute-1.amazonaws.com:9090/targets
 
 
 
-
-      - run:
-          name: Deploy backend
-          command: |
-            cd backend
-            npm i
-            npm run build
-            cp ~/project/backend/package.json ~/project/backend/dist
-            cd ~/project/backend/dist
-            zip -rq dist.zip *
-            ls -lrth dist.zip
-            mv dist.zip ~/project/.circleci/ansible/roles/deploy/files
-            ls -lrth ~/project/.circleci/ansible/roles/deploy/files/
-          
-      - run:
-          name: Deploy backend ansible
-          command: |           
-            cd .circleci/ansible
-            echo "Contents  of the inventory.txt file is -------"
-            cat inventory.txt 
-            ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory.txt deploy-backend.yml -vv
