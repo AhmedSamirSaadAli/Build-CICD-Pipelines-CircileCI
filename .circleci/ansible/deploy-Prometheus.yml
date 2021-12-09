@@ -1,6 +1,6 @@
 ---
 
-- name: "configuration play" 
+- name: "Install Prometheus" 
   hosts: web
   user: ubuntu
   gather_facts: false

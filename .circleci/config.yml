@@ -309,7 +309,16 @@ jobs:
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt 
             ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory.txt deploy-backend.yml -vv
-
+      - run:
+          name: Install Prometheus 
+          command: |           
+            cd .circleci/ansible
+            echo "Contents  of the inventory.txt file is -------"
+            cat inventory.txt 
+            ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory.txt deploy-Prometheus.yml -vv
+            
+            
+            
       - destroy-environment:
          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
       - revert-migrations:
@@ -438,30 +447,7 @@ jobs:
              else
                 echo "i am out"
             fi
-            
-  node_exporter:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "fb:37:85:ce:0b:ca:dd:b3:ca:41:c8:71:3e:b6:ed:ca"
-      - attach_workspace:
-          at: ~/
-      - run:
-          name: Install dependencies
-          command: |
-            sudo apt-get install zip unzip python ansible python-pip && pip install awscli
-      - run:
-          name: Deploy Prometheus 
-          command: |           
-            cd .circleci/ansible
-            echo "Contents  of the inventory.txt file is -------"
-            cat inventory.txt 
-            ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory.txt deploy-Prometheus.yml -vv
-            
-            
+
 workflows:
   default:
     jobs:
@@ -494,5 +480,3 @@ workflows:
           requires: [smoke-test]
       - cleanup:
           requires: [cloudfront-update]     
-      - node_exporter:
-          requires: [cleanup]     
